@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0f0f13;
+  --surface: #18181f;
+  --border: #2a2a35;
+  --accent: #f0c040;
+  --danger: #ff4d6d;
+  --text: #e8e8f0;
+  --muted: #6b6b85;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }

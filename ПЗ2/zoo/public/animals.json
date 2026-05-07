@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Лев",
+    "type": "Ссавець",
+    "habitat": "Савана",
+    "description": "Лев — найбільший хижак Африки. Живе прайдами до 30 особин. Самці впізнавані завдяки пишній гриві.",
+    "photo": "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=640&q=80"
+  },
+  {
+    "id": 2,
+    "name": "Орел",
+    "type": "Птах",
+    "habitat": "Гори",
+    "description": "Степовий орел — великий хижий птах з розмахом крил до 2 метрів. Гнізда будує на скелях або деревах.",
+    "photo": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=640&q=80"
+  },
+  {
+    "id": 3,
+    "name": "Крокодил",
+    "type": "Рептилія",
+    "habitat": "Річки",
+    "description": "Нільський крокодил — один із найбільших сучасних рептилій. Може жити понад 80 років.",
+    "photo": "https://dovidka.biz.ua/wp-content/uploads/2015/12/tsikavi-fakti-pro-krokodila.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Дельфін",
+    "type": "Ссавець",
+    "habitat": "Океан",
+    "description": "Афаліна — один із найрозумніших ссавців. Живе у групах, спілкується через складну систему сигналів.",
+    "photo": "https://images.unsplash.com/photo-1607153333879-c174d265f1d2?w=640&q=80"
+  },
+  {
+    "id": 5,
+    "name": "Жираф",
+    "type": "Ссавець",
+    "habitat": "Савана",
+    "description": "Жираф — найвища тварина на планеті. Висота дорослого самця сягає 5–6 метрів.",
+    "photo": "https://images.unsplash.com/photo-1547721064-da6cfb341d50?w=640&q=80"
+  },
+  {
+    "id": 6,
+    "name": "Гадюка",
+    "type": "Рептилія",
+    "habitat": "Ліс",
+    "description": "Гадюка звичайна — єдина отруйна змія України. Харчується мишами, жабами та ящірками.",
+    "photo": "https://images.unsplash.com/photo-1531386151447-fd76ad50012f?w=640&q=80"
+  },
+  {
+    "id": 7,
+    "name": "Фламінго",
+    "type": "Птах",
+    "habitat": "Солоні озера",
+    "description": "Рожевий фламінго отримує свій колір завдяки пігментам у їжі — водоростях та рачках.",
+    "photo": "https://pravda-news.ru/upload/resize_cache/webp/iblock/7bb/r4gtn2a2eehv922ig7suyj1wbsmvf3oo.webp"
+  },
+  {
+    "id": 8,
+    "name": "Вовк",
+    "type": "Ссавець",
+    "habitat": "Ліс",
+    "description": "Сірий вовк — соціальна тварина, живе зграями зі складною ієрархією. Ареал охоплює більшу частину Євразії.",
+    "photo": "https://dovidka.biz.ua/wp-content/uploads/2014/02/%D1%82%D0%B2%D1%96%D1%80-%D0%BE%D0%BF%D0%B8%D1%81-%D0%B2%D0%BE%D0%B2%D0%BA%D0%B0.jpg"
+  }
+]
