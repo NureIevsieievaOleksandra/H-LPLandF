@@ -1,0 +1,44 @@
+{% extends 'concierge/base.html' %}
+{% block content %}
+<div style="margin-bottom:15px">
+    <h2>📋 Бронювання</h2>
+    {% if user.role == 'admin' %}
+    <a href="{% url 'booking_create' %}" class="btn btn-green">+ Нове бронювання</a>
+    {% endif %}
+</div>
+<table>
+    <tr>
+        <th>Гість</th>
+        <th>Приміщення</th>
+        <th>Заїзд</th>
+        <th>Виїзд</th>
+        <th>Статус</th>
+        <th>Дії</th>
+    </tr>
+    {% for b in bookings %}
+    <tr>
+        <td>{{ b.guest_name }}</td>
+        <td>{{ b.room.name }}</td>
+        <td>{{ b.check_in_date|date:"d.m.Y H:i" }}</td>
+        <td>{{ b.check_out_date|date:"d.m.Y H:i" }}</td>
+        <td>{{ b.get_status_display }}</td>
+        <td>
+            {% if b.status == 'pending' %}
+            <a href="{% url 'booking_checkin' b.pk %}" class="btn btn-green">✅ Заїзд</a>
+            {% endif %}
+            {% if b.status == 'checked_in' %}
+            <a href="{% url 'booking_checkout' b.pk %}" class="btn btn-blue">🚪 Виїзд</a>
+            {% endif %}
+            {% if user.role == 'admin' and b.status != 'cancelled' and b.status != 'checked_out' %}
+            <a href="{% url 'booking_cancel' b.pk %}" class="btn btn-red"
+               onclick="return confirm('Скасувати бронювання?')">✖ Скасувати</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">Бронювань немає</td></tr>
+    {% endfor %}
+</table>
+<br>
+<a href="{% url 'visitor_list' %}" class="btn btn-blue">← Назад</a>
+{% endblock %}

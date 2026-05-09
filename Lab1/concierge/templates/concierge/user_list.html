@@ -1,0 +1,26 @@
+{% extends 'concierge/base.html' %}
+{% block content %}
+<h2>👥 Користувачі системи</h2>
+<table>
+    <tr><th>Логін</th><th>Роль</th><th>Дата реєстрації</th><th>Дія</th></tr>
+    {% for u in users %}
+    <tr>
+        <td>{{ u.username }}</td>
+        <td>{{ u.get_role_display }}</td>
+        <td>{{ u.date_joined|date:"d.m.Y H:i" }}</td>
+        <td>
+            {% if u != user %}
+            <a href="{% url 'user_delete' u.pk %}" class="btn btn-red"
+               onclick="return confirm('Видалити користувача {{ u.username }}?')">
+               🗑 Видалити
+            </a>
+            {% else %}
+            <span style="color:gray">це ви</span>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="{% url 'visitor_list' %}" class="btn btn-blue">← Назад</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'concierge/base.html' %}
+{% block content %}
+
+<div style="margin-bottom:15px">
+    <a href="{% url 'visitor_enter' %}" class="btn btn-green">+ Зареєструвати вхід</a>
+    <a href="{% url 'booking_list' %}" class="btn btn-blue" style="margin-left:10px">Бронювання</a>
+    {% if user.role == 'admin' %}
+    <a href="{% url 'room_list' %}" class="btn btn-blue" style="margin-left:10px">Приміщення</a>
+    <a href="{% url 'user_list' %}" class="btn btn-blue" style="margin-left:10px">Користувачі</a>
+    {% endif %}
+</div>
+
+<h2>У приміщенні зараз ({{ visitors_inside.count }})</h2>
+<table>
+    <tr><th>ПІБ</th><th>Час входу</th><th>Мета</th><th>Дія</th></tr>
+    {% for v in visitors_inside %}
+    <tr>
+        <td>{{ v.full_name }}</td>
+        <td>{{ v.entered_at|date:"d.m.Y H:i" }}</td>
+        <td>{{ v.purpose }}</td>
+        <td><a href="{% url 'visitor_exit' v.pk %}" class="btn btn-red">Вихід</a></td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Нікого немає</td></tr>
+    {% endfor %}
+</table>
+
+<h2>Вже вийшли сьогодні</h2>
+<table>
+    <tr><th>ПІБ</th><th>Час входу</th><th>Час виходу</th><th>Мета</th></tr>
+    {% for v in visitors_outside %}
+    <tr>
+        <td>{{ v.full_name }}</td>
+        <td>{{ v.entered_at|date:"d.m.Y H:i" }}</td>
+        <td>{{ v.exited_at|date:"d.m.Y H:i" }}</td>
+        <td>{{ v.purpose }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Поки що ніхто не виходив</td></tr>
+    {% endfor %}
+</table>
+
+<br>
+<button onclick="testToast()" class="btn btn-red">Тест тривоги</button>
+{% endblock %}

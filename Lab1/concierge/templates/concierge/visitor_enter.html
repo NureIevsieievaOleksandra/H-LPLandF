@@ -1,0 +1,13 @@
+{% extends 'concierge/base.html' %}
+{% block content %}
+<h2>Реєстрація входу</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>ПІБ відвідувача:</label>
+    <input type="text" name="full_name" required>
+    <label>Мета візиту:</label>
+    <input type="text" name="purpose">
+    <button type="submit" class="btn btn-blue">Зареєструвати</button>
+    <a href="{% url 'visitor_list' %}" class="btn btn-red">Скасувати</a>
+</form>
+{% endblock %}

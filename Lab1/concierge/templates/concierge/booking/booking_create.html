@@ -1,0 +1,24 @@
+{% extends 'concierge/base.html' %}
+{% block content %}
+<h2>+ Нове бронювання</h2>
+{% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+<form method="post" style="max-width:500px">
+    {% csrf_token %}
+    <label>Ім'я гостя:</label>
+    <input type="text" name="guest_name" required>
+    <label>Приміщення:</label>
+    <select name="room" style="padding:6px; width:100%; margin-bottom:10px">
+        {% for room in rooms %}
+        <option value="{{ room.pk }}">{{ room.name }} (місць: {{ room.capacity }})</option>
+        {% endfor %}
+    </select>
+    <label>Дата заїзду:</label>
+    <input type="datetime-local" name="check_in_date" required>
+    <label>Дата виїзду:</label>
+    <input type="datetime-local" name="check_out_date" required>
+    <label>Примітки:</label>
+    <input type="text" name="notes">
+    <button type="submit" class="btn btn-blue">Зберегти</button>
+    <a href="{% url 'booking_list' %}" class="btn btn-red">Скасувати</a>
+</form>
+{% endblock %}

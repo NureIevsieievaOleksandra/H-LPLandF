@@ -1,0 +1,19 @@
+{% extends 'concierge/base.html' %}
+{% block content %}
+<h2>Реєстрація</h2>
+{% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+<form method="post" style="max-width:400px">
+    {% csrf_token %}
+    <label>Логін:</label>
+    <input type="text" name="username" required>
+    <label>Пароль:</label>
+    <input type="password" name="password" required>
+    <label>Роль:</label>
+    <select name="role">
+        <option value="concierge">Консьєрж</option>
+        <option value="admin">Адміністратор</option>
+    </select>
+    <button type="submit" class="btn btn-blue">Зареєструватися</button>
+    <a href="{% url 'login' %}" class="btn btn-red">Назад</a>
+</form>
+{% endblock %}

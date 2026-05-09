@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Консьєрж</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f4; }
+        h1, h2 { color: #333; }
+        table { border-collapse: collapse; width: 100%; background: white; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #4a90e2; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .btn { padding: 6px 14px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn-red { background: #e74c3c; color: white; }
+        .btn-green { background: #27ae60; color: white; }
+        .btn-blue { background: #4a90e2; color: white; }
+        input, select { padding: 6px; width: 100%; margin-bottom: 10px; box-sizing: border-box; }
+        .container { max-width: 900px; margin: auto; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="topbar">
+        <h1>Система консьєржа</h1>
+        {% if user.is_authenticated %}
+        <p>{{ user.username }} ({{ user.get_role_display }}) | <a href="{% url 'logout' %}">Вийти</a></p>
+        {% endif %}
+    </div>
+    {% block content %}{% endblock %}
+</div>
+
+<div id="toast" style="
+    display:none;
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    background:#e74c3c;
+    color:white;
+    padding:16px 24px;
+    border-radius:12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    font-size:16px;
+    z-index:9999;
+    max-width:350px;
+    animation: slidein 0.3s ease;
+">
+    <div style="font-size:20px;margin-bottom:6px">🚨 <strong>ТРИВОГА!</strong></div>
+    <div id="toast-message"></div>
+    <div style="margin-top:10px">
+        <button onclick="document.getElementById('toast').style.display='none'"
+                style="background:white; color:#e74c3c; border:none; padding:4px 12px; border-radius:6px; cursor:pointer">
+            Закрити
+        </button>
+    </div>
+</div>
+
+<style>
+@keyframes slidein {
+    from { transform: translateX(120%); opacity:0; }
+    to { transform: translateX(0); opacity:1; }
+}
+</style>
+
+<script>
+function checkAlerts() {
+    fetch('/alerts/api/')
+        .then(response => response.json())
+        .then(data => {
+            if (data.has_alert) {
+                document.getElementById('toast-message').innerText = data.message;
+                const toast = document.getElementById('toast');
+                toast.style.display = 'block';
+                toast.style.animation = 'none';
+                toast.offsetHeight;
+                toast.style.animation = 'slidein 0.3s ease';
+            }
+        })
+        .catch(err => console.log('Alert check failed:', err));
+}
+
+checkAlerts();
+setInterval(checkAlerts, 30000);
+
+function testToast() {
+    document.getElementById('toast-message').innerText = 'Повітряна тривога — тестове сповіщення';
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    toast.style.animation = 'none';
+    toast.offsetHeight;
+    toast.style.animation = 'slidein 0.3s ease';
+}
+</script>
+</body>
+</html>
